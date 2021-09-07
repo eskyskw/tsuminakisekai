@@ -51,7 +51,7 @@ export default function TheTable( data=[] ) {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>

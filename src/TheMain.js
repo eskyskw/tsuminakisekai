@@ -29,11 +29,9 @@ const [times, setTimes] = useState([30]);//timesをテキストにするかint�
 
   return (
     <div>
-      <body>
         {TheTable( data )}
-      </body>
       <footer>
-        <table>
+        <table><tbody><tr>
           <td>
             {TheTotal(
               prices.reduce(function(s, e){return s+e;}, 0),
@@ -45,7 +43,7 @@ const [times, setTimes] = useState([30]);//timesをテキストにするかint�
               addData = {addData}
             />
           </td>
-        </table>
+        </tr></tbody></table>
       </footer>
     </div>
   );
