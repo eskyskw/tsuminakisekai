@@ -8,7 +8,6 @@ export default function TheInput({addData = f=>f}) {
 
   const submit = event => {
     event.preventDfault();
-    alert("help!!");
     addData({name: name, time: time, price: price});
     setName("");
     setTime("");

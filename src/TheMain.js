@@ -18,12 +18,13 @@ export default function TheMain() {
     }
 ]);
 const [prices, setPrices] = useState(data.map(d => d.price));
-const [times, setTimes] = useState([30]);
+const [times, setTimes] = useState([30]);//timesをテキストにするかintにするか……
 
   const addData = (d) => {
     const newData = [...data, d];
     setData(newData);
-    alert('help!!!');
+    setPrices(data.map(d => d.price));
+    setTimes(data.map(d => d.time));
   };
 
   return (
