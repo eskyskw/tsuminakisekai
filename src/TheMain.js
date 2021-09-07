@@ -5,8 +5,6 @@ import TheTotal from './TheTotal.js';
 import TheInput from './TheInput.js';
 
 export default function TheMain() {
-  const [prices, setPrices] = useState([1]);
-  const [times, setTimes] = useState([30]);
   const [data, setData] = useState([
     {
         name: 'New Necromancer',
@@ -19,6 +17,8 @@ export default function TheMain() {
         price: 12300
     }
 ]);
+const [prices, setPrices] = useState(data.map(d => d.price));
+const [times, setTimes] = useState([30]);
 
   const addData = (d) => {
     const newData = [...data, d];
