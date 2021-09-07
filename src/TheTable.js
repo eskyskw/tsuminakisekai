@@ -4,7 +4,7 @@ import { useTable } from 'react-table';
 const [columns, setColumns] = useState([]);
 const [data, setData] = useState([]);
 */
-export default function TheTable( data=[] ) {
+export default function TheTable( {data=[]} ) {
 
     const columns = [
         {

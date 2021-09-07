@@ -7,7 +7,7 @@ export default function TheInput({addData = f=>f}) {
   const [price, setPrice] = useState(0);
 
   const submit = event => {
-    event.preventDfault();
+    event.preventDefault();
     addData({name: name, time: time, price: price});
     setName("");
     setTime("");

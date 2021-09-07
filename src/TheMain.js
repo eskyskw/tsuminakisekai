@@ -29,7 +29,9 @@ const [times, setTimes] = useState([30]);//timesをテキストにするかint�
 
   return (
     <div>
-        {TheTable( data )}
+      <TheTable
+        data = {data}
+      />
       <footer>
         <table><tbody><tr>
           <td>
