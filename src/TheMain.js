@@ -7,7 +7,7 @@ import { assertProperty } from '@babel/types';
 
 const DAY_MILLISECOND = 24 * 60 * 60 * 1000;
 
-const dayDistance = function (src) {
+const dayDistance = function (src) {//現在時刻とsrcの日付との日付の差を返す(実数で)
   const today = new Date();
   src = new Date(src);
   const deltaMillisecond = today.getTime() - src.getTime();
@@ -17,7 +17,7 @@ const dayDistance = function (src) {
 export default function TheMain() {
   const [data, setData] = useState([]);
   const [prices, setPrices] = useState([0]);
-  const [times, setTimes] = useState([]);//timesをテキストにするかintにするか……
+  const [times, setTimes] = useState([]);
 
   const addData = (d) => {
     const newData = [...data, d];
@@ -26,10 +26,31 @@ export default function TheMain() {
     setTimes(newData.map(d => dayDistance(d.time)));
   };
 
+  const deleteData = (del) => {
+    //alert("この項目を削除しますか？");的なのほしいね
+    const newData = data.filter((d) => (d !== del));
+    setData(newData);
+    setPrices(newData.map(d => d.price));
+    setTimes(newData.map(d => dayDistance(d.time)));
+  };
+
+  const fixData = (d) => {
+    return (
+      <TheInput 
+        addData = {addData}
+        thisName = {d.name}
+        thisDate = {d.time}
+        thisPrice = {d.price}
+      />
+    );
+  };
+
   return (
     <div>
       <TheTable
         data = {data}
+        fixer = {(d) => fixData(d)}
+        deleter = {(d) => deleteData(d)}
       />
       <footer>
         <table><tbody><tr>

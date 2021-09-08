@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from "react";
 
-export default function TheInput({addData = f=>f}) {
+export default function TheInput({addData = f=>f, thisName = "name...", thisDate = "date...", thisPrice = "price..."}) {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [price, setPrice] = useState(0);

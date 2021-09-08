@@ -4,28 +4,30 @@ import { useTable } from 'react-table';
 const [columns, setColumns] = useState([]);
 const [data, setData] = useState([]);
 */
-export default function TheTable( {data=[]} ) {
+export default function TheTable( {data=[], fixer = f=>f, deleter = d=>d}  ) {
 
     const columns = [
         {
-            Header: '積み',
-            accessor: 'name'
+          Header: '積み',
+          accessor: 'name'
         },
         {
-            Header: '期間',
-            accessor: 'time'
+          Header: '日付',
+          accessor: 'time'
         },
         {
-            Header: '価格',
-            accessor: 'price'
+          Header: '価格',
+          accessor: 'price'
         }
     ];
   
     return (
       <table>
-        <thead>
+        <thead><tr>
           {columns.map(c => (<td> {c.Header} </td>))}
-        </thead>
+          <td>修正</td>
+          <td>削除</td>
+        </tr></thead>
         <tbody>
           {data.map(d => (
             <tr>
@@ -33,6 +35,12 @@ export default function TheTable( {data=[]} ) {
                 const acc = c.accessor;
                 return (<td> {d[acc]} </td>);
               })}
+              <td>
+                <button onClick={() => fixer(d)} > 修正 </button>
+              </td>
+              <td>
+                <button onClick={() => deleter(d)} > 削除 </button>
+              </td>
             </tr>
           ))}
         </tbody>
