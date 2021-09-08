@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TheTitol(priceSum = 0, timeSum = 0) {
+export default function TheTitol({priceSum = 0, timeSum = 0}) {
     return(
         <table><tbody><tr>
             <td>
@@ -13,7 +13,7 @@ export default function TheTitol(priceSum = 0, timeSum = 0) {
                 <h2> <b>積み</b>期間の合計は…… </h2>
             </td>
             <td>
-                <h2> {timeSum} h </h2>
+                <h2> {timeSum} 日 </h2>
             </td>
         </tr></tbody></table>
     );

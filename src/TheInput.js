@@ -26,8 +26,8 @@ export default function TheInput({addData = f=>f}) {
       <input
         value={time}
         onChange={event => setTime(event.target.value)}
-        type="text"
-        placeholder="time..."
+        type="date"
+        placeholder="date..."
         required
       />
       <input

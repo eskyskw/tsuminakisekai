@@ -3,28 +3,27 @@ import React, { useState } from "react";
 import TheTable from './TheTable.js';
 import TheTotal from './TheTotal.js';
 import TheInput from './TheInput.js';
+import { assertProperty } from '@babel/types';
+
+const DAY_MILLISECOND = 24 * 60 * 60 * 1000;
+
+const dayDistance = function (src) {
+  const today = new Date();
+  src = new Date(src);
+  const deltaMillisecond = today.getTime() - src.getTime();
+  return deltaMillisecond / DAY_MILLISECOND;
+}
 
 export default function TheMain() {
-  const [data, setData] = useState([
-    {
-        name: 'New Necromancer',
-        time: 'too long',
-        price: 800
-    },
-    {
-        name: 'Do androids dream of electric sheep?',
-        time: 'recentry',
-        price: 12300
-    }
-]);
-const [prices, setPrices] = useState(data.map(d => d.price));
-const [times, setTimes] = useState([30]);//timesをテキストにするかintにするか……
+  const [data, setData] = useState([]);
+  const [prices, setPrices] = useState([0]);
+  const [times, setTimes] = useState([]);//timesをテキストにするかintにするか……
 
   const addData = (d) => {
     const newData = [...data, d];
     setData(newData);
-    setPrices(data.map(d => d.price));
-    setTimes(data.map(d => d.time));
+    setPrices(newData.map(d => d.price));
+    setTimes(newData.map(d => dayDistance(d.time)));
   };
 
   return (
@@ -35,10 +34,10 @@ const [times, setTimes] = useState([30]);//timesをテキストにするかint�
       <footer>
         <table><tbody><tr>
           <td>
-            {TheTotal(
-              prices.reduce(function(s, e){return s+e;}, 0),
-              times.reduce(function(s, e){return s+e;}, 0)
-            )}
+            <TheTotal
+              priceSum = { prices.reduce(function(s, e){return parseInt(s) + parseInt(e);}, 0) }
+              timeSum = { parseInt(times.reduce(function(s, e){return s+e;}, 0)) }
+            />
           </td>
           <td>
             <TheInput
