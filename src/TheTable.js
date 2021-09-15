@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTable } from 'react-table';
+import Modal from './Modal.js';
 /*
 const [columns, setColumns] = useState([]);
 const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ export default function TheTable( {data=[], fixer = f=>f, deleter = d=>d}  ) {
           accessor: 'price'
         }
     ];
-  
+
     return (
       <table>
         <thead><tr>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TheTable from './TheTable.js';
 import TheTotal from './TheTotal.js';
 import TheInput from './TheInput.js';
-import { assertProperty } from '@babel/types';
+import TheFix from './TheFix.js';
 
 const DAY_MILLISECOND = 24 * 60 * 60 * 1000;
 
@@ -15,7 +15,7 @@ const dayDistance = function (src) {//現在時刻とsrcの日付との日付の
 }
 
 export default function TheMain() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{name:"hoho", time: Date(), price: 100}]);
   const [prices, setPrices] = useState([0]);
   const [times, setTimes] = useState([]);
 
@@ -34,10 +34,18 @@ export default function TheMain() {
     setTimes(newData.map(d => dayDistance(d.time)));
   };
 
-  const fixData = (d) => {
+  const fixData = (d) => {  //returnを使わない方法が必要(でも<Modal>は必要では？)
     return (
-      <TheInput 
-        addData = {addData}
+      <TheFix 
+        fixData = {(nd) => 
+          {
+            const delData = data.filter((e) => (e !== d));
+            const newData = [...delData, nd];
+            setData(newData);
+            setPrices(newData.map(d => d.price));
+            setTimes(newData.map(d => dayDistance(d.time)));
+          }
+        }
         thisName = {d.name}
         thisDate = {d.time}
         thisPrice = {d.price}
