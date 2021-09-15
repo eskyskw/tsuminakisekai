@@ -15,7 +15,7 @@ const dayDistance = function (src) {//現在時刻とsrcの日付との日付の
 }
 
 export default function TheMain() {
-  const [data, setData] = useState([{name:"hoho", time: Date(), price: 100}]);
+  const [data, setData] = useState([{name:"hoho", time: "2020-01-13", price: 100}]);
   const [prices, setPrices] = useState([0]);
   const [times, setTimes] = useState([]);
 
@@ -57,8 +57,11 @@ export default function TheMain() {
     <div>
       <TheTable
         data = {data}
-        fixer = {(d) => fixData(d)}
         deleter = {(d) => deleteData(d)}
+        setData = {setData}
+        setPrices = {setPrices}
+        setTimes = {setTimes}
+        dayDistance = {dayDistance}
       />
       <footer>
         <table><tbody><tr>

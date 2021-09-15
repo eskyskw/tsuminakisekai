@@ -2,12 +2,10 @@ import './App.css';
 import React, { useState } from "react";
 import Modal from './Modal.js';
 
-export default function TheFix(fixData = f=>f,  thisName = "name...", thisDate = "date...", thisPrice = "price...") {
+export default function TheFix({fixData = f=>f, show = false, setShow = f=>f,  thisName = "name...", thisDate = "date...", thisPrice = "price..."}) {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [price, setPrice] = useState(0);
-
-  alert(thisName);
 
   const submit = event => {
     event.preventDefault();
@@ -15,10 +13,8 @@ export default function TheFix(fixData = f=>f,  thisName = "name...", thisDate =
     setName("");
     setTime("");
     setPrice(0);
-    setPop(false);
+    setShow(false);
   };
-
-  const [pop, setPop] = useState(false);
 
   return (
     <Modal
@@ -48,8 +44,8 @@ export default function TheFix(fixData = f=>f,  thisName = "name...", thisDate =
           <input type="submit" balue="Submit" />
         </form>
       }
-      show = {pop}
-      setShow = {setPop}
+      show = {show}
+      setShow = {setShow}
     />
   );
 }
